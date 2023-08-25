@@ -8,6 +8,21 @@ export function buildLoader({ isDev }: BuildOptions): webpack.RuleSetRule[] {
     use: ['@svgr/webpack'],
   };
 
+  const babelLoader = {
+    rules: [
+      {
+        test: /\.(ts|js|jsx|tsx)/,
+        exclude: /node_modules/,
+        use: {
+          loader: 'babel-loader',
+          options: {
+            presets: ['@babel/preset-env'],
+          },
+        },
+      },
+    ],
+  };
+
   const cssLoader = {
     test: /\.s[ac]ss$/i,
     use: [
@@ -17,7 +32,9 @@ export function buildLoader({ isDev }: BuildOptions): webpack.RuleSetRule[] {
         options: {
           modules: {
             auto: (resPath: string) => Boolean(resPath.includes('.module')),
-            localIdentName: isDev ? '[path][name]__[local]--[hash:base64:5]' : '[hash:base64:8]',
+            localIdentName: isDev
+              ? '[path][name]__[local]--[hash:base64:5]'
+              : '[hash:base64:8]',
           },
         },
       },
@@ -40,5 +57,5 @@ export function buildLoader({ isDev }: BuildOptions): webpack.RuleSetRule[] {
     ],
   };
 
-  return [svgLoader, cssLoader, typescriptLoader, fileLoader];
+  return [svgLoader, cssLoader, babelLoader, typescriptLoader, fileLoader];
 }
