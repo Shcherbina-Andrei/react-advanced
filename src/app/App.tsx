@@ -6,7 +6,7 @@ import { SideBar } from 'widgets/SideBar';
 import { Suspense } from 'react';
 import { useTheme } from './providers/ThemeProvider';
 
-export const App = () => {
+function App() {
   const { theme } = useTheme();
 
   return (
@@ -20,4 +20,6 @@ export const App = () => {
       </Suspense>
     </div>
   );
-};
+}
+
+export default App;
