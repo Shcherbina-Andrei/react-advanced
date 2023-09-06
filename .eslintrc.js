@@ -43,7 +43,7 @@ module.exports = {
     'no-underscore-dangle': 'off',
     'linebreak-style': 'off',
     'i18next/no-literal-string':
-      ['error', { markupOnly: true, ignoreAttribute: ['data-testid', 'color'] }],
+      ['error', { markupOnly: true, ignoreAttribute: ['data-testid', 'color', 'to'] }],
     'max-len': ['error', { ignoreComments: true, code: 100 }],
   },
   globals: {
